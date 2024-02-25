@@ -18,7 +18,11 @@ const Video = ({ video, id }) => {
   const videoref = useRef();
   //Updating The Progress
   const handleProgress = (e) => {
-    if (isNaN(e.target.duration)) return;
+    if (isNaN(e.target.duration)) {
+      return;
+    }
+    //Calculation for progress bar
+    //Simply converting the current time to percentage
     setProgress((e.target.currentTime / e.target.duration) * 100);
   };
   //
