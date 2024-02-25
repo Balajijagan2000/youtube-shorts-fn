@@ -1,0 +1,222 @@
+:root {
+    --short-container-width: 500px;
+    --short-video-width: 360px;
+    --short-video-height: 600px;
+    --border-radius: .7em;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+#root {
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    background-color:#413839;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.shorts-wrapper {
+    max-height: 100vh;
+    height: 100%;
+    overflow-y: scroll;
+    width: var(--short-container-width);
+    padding: .6em;
+    display: flex;
+    flex-direction: column;
+    scroll-snap-type: mandatory y;
+}
+
+.shorts-container { 
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: var(--short-video-height);
+    margin-top: .8em;
+    padding: .3em;
+}
+.video-container {
+    width: var(--short-video-width);
+    height: var(--short-video-height);
+    position: relative;
+    border-radius: .5em;
+    overflow: hidden;
+    /* border: 1px solid red; */
+}
+.video-container video {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+.video-control {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 100%;
+    height: 80px;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2.3rem;
+    opacity: 0;
+}
+.animate {
+    animation-name: fadeout;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+
+    }
+    100% {
+        opacity: 0;
+        /* display: none; */
+    }
+}
+
+.shorts-info {
+    min-height: 100%;
+    padding: .3em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}
+.shorts-info .info-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: .2em;
+    color: #fff;
+
+}
+.shorts-info .info-box span {
+    padding: .2em;
+    font-weight: 800;
+    font-size: .8rem;
+}
+.shorts-info .info-box button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: rgba(1,1,1,.6);
+    font-size: 1.4rem;
+    height: 50px;
+    width: 50px;
+    border: none;
+    outline: none;
+    border-radius: 100%;
+    color: #fff;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.shorts-info .info-box button.clicked {
+    background-color: #fff;
+    color: rgba(1,1,1,.6);
+}
+.shorts-info .info-box:last-child {
+    background-color: rgba(1,1,1,.6);
+    font-size: 1.4rem;
+    height: 50px;
+    width: 50px;
+    border-radius: .3em;
+}
+.shorts-info .info-box:last-child img{
+    width: 30px;
+    height: 30px;
+}
+.video-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 1em;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.video-channel {
+    display: flex;
+    flex-direction: row;
+    gap: .3em;
+    font-size: 1.2rem;
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+    
+}
+.video-channel img {
+    width: 30px;
+    height: 30px;
+
+}
+.video-channel button {
+    border: none;
+    outline: none;
+    background-color: #fff;
+    color: black;
+    font-weight: 500;
+    padding: .4em .5em;
+    border-radius: 1em;
+}
+.video-info .video-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: tomato;
+
+}
+progress::-webkit-progress-value {
+    background-color: tomato;
+}
+
+/* Media Query */
+@media  screen and (max-width: 480px) {
+    .shorts-wrapper {
+        width: var(--short-video-width);
+        position: relative;
+    }
+    .shorts-container {
+        padding: 0;
+    }
+    .shorts-container video {
+        width: 100%;
+    }
+    .shorts-info {
+        position: absolute;
+        right: 0;
+        padding: 1em;
+        max-height: 400px;
+        align-items: center;
+        justify-content: flex-start;
+        gap: .8em;
+        
+    }
+
+}
